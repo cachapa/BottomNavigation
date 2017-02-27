@@ -14,7 +14,7 @@ The code is pretty compact since it offloads as much work as possible to the Lin
 
 ### Usage
 
-Currently the library isn't published anywhere. You'll have to either import the project manually.
+Currently the library isn't published anywhere. You'll have to import the project manually.
 
 Add `BottomNavigationView` as to the bottom of your layout:
 
