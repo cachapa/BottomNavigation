@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/start"
+        android:icon="@drawable/menu_1"
+        android:title="Movies &amp; TV" />
+
+    <item
+        android:id="@+id/epg"
+        android:icon="@drawable/menu_2"
+        android:title="Music" />
+
+    <item
+        android:id="@+id/series_list"
+        android:icon="@drawable/menu_3"
+        android:title="Books" />
+
+    <item
+        android:id="@+id/discover"
+        android:icon="@drawable/menu_4"
+        android:title="Newsstand" />
+
+</menu>

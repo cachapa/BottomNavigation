@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+
+    <array name="menu_colors">
+        <item>#485b62</item>
+        <item>#0a8768</item>
+        <item>#886c61</item>
+        <item>#6b4945</item>
+    </array>
+</resources>
