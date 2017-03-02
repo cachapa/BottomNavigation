@@ -155,17 +155,19 @@ public class BottomNavigationView extends LinearLayout implements View.OnClickLi
         for (Circle circle : circles) {
             int x = circle.view.getLeft() + circle.view.getWidth() / 2;
             int y = circle.view.getHeight() / 2;
-            int radius = Math.max(x, getWidth() - x);
-            radius *= 1.05f; // Slightly increase radius to reach the corners
-            paint.setColor(circle.color);
-            canvas.drawCircle(x, y, radius * circle.progress, paint);
-
-            if (circle.view == getChildAt(selectedIndex)) {
-                paint.setColor(Color.WHITE);
-                paint.setAlpha((int) ((1 - circle.progress) * 100));
-                canvas.drawCircle(x, y, circle.view.getWidth() / 2 * circle.progress, paint);
-                paint.setAlpha(255);
+            
+            if (circle.color != 0) {
+                int radius = Math.max(x, getWidth() - x);
+                radius *= 1.05f; // Slightly increase radius to reach the corners
+                paint.setColor(circle.color);
+                canvas.drawCircle(x, y, radius * circle.progress, paint);
             }
+
+            // Show selected feedback
+            paint.setColor(Color.WHITE);
+            paint.setAlpha((int) ((1 - circle.progress) * 100));
+            canvas.drawCircle(x, y, circle.view.getWidth() / 2f * circle.progress, paint);
+            paint.setAlpha(255);
         }
     }
 
@@ -213,7 +215,7 @@ public class BottomNavigationView extends LinearLayout implements View.OnClickLi
     }
 
     public void setSelectedIndex(int index) {
-        CircleAnimatorListener listener = new CircleAnimatorListener(getChildAt(index), colors[index]);
+        CircleAnimatorListener listener = new CircleAnimatorListener(getChildAt(index), getColor(index));
         ValueAnimator animator = ValueAnimator.ofFloat(0, 1).setDuration(DURATION);
         animator.setInterpolator(new FastOutSlowInInterpolator());
         animator.addListener(listener);
@@ -256,6 +258,13 @@ public class BottomNavigationView extends LinearLayout implements View.OnClickLi
         return items.get(selectedIndex).getIitem();
     }
 
+    @Override
+    public void setBackgroundColor(int color) {
+        if (color != 0) {
+            super.setBackgroundColor(color);
+        }
+    }
+
     private void updateSelectedItem() {
         for (int i = 0; i < getChildCount(); i++) {
             BottomNavigationItemHolder item = items.get(i);
@@ -264,8 +273,12 @@ public class BottomNavigationView extends LinearLayout implements View.OnClickLi
         }
 
         if (circles.isEmpty()) {
-            setBackgroundColor(colors[selectedIndex]);
+            setBackgroundColor(getColor(selectedIndex));
         }
+    }
+
+    private int getColor(int index) {
+        return colors == null || colors.length < index ? 0 : colors[index];
     }
 
     public interface OnMenuItemClickListener {
