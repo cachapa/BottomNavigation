@@ -47,7 +47,7 @@ public class BottomNavigationView extends LinearLayout implements View.OnClickLi
     private List<BottomNavigationItemHolder> items;
     private OnMenuItemClickListener onMenuItemClickListener;
 
-    private Rect insets;
+    private Rect insets = new Rect();
 
     private Transition changeBounds;
     private TransitionSet visibility;
